@@ -1,1 +1,48 @@
+nums = input("Введи кол-во фишек в номере, сплите, каре, стрите, six-line: \n").split(" ")   
+summ = int(nums[0])*35 + int(nums[1])*17 + int(nums[2])*8 + int(nums[3])*11 + int(nums[4])*5
 
+print(f"{summ} жетонов")
+
+nominal = float(input("Какой номинал у фишек? \n"))
+
+while True:
+    nominal = float(input("ВНИМАНИЕ!!!\nНоминал может быть только по 0.5, 1, 2, 5, 25!\nВведи подходящее значение:\n"))
+    if nominal==0.5 or nominal==1.0 or nominal==2.0 or nominal==5.0 or nominal==25.0:
+        break
+#Переменные
+maxbet = 25
+
+outnumber = 0
+outsplit = 0
+outquad = 0
+outstraight = 0
+outsixline = 0
+
+number = int(nums[0]) * nominal
+split = int(nums[1]) * nominal
+quad = int(nums[2]) * nominal
+straight = int(nums[3]) * nominal
+sixline = int(nums[4]) * nominal
+
+if number > maxbet:
+    outnumber = number - maxbet
+    number = maxbet
+if split > maxbet * 2:
+    outsplit = split - maxbet * 2
+    split = maxbet * 2
+if quad > maxbet * 4:
+    outquad = quad - maxbet * 4
+    quad = maxbet * 4
+if straight > maxbet * 3:
+    outstraight = straight - maxbet * 3
+    straight = maxbet * 3
+if sixline > maxbet * 6:
+    outsixline = sixline - maxbet * 6
+    sixline = maxbet * 6
+
+cash = number * 35 + split * 17 + quad * 8 + straight * 11 + sixline * 5
+print(f"${cash} к выплате")
+
+out = outnumber + outsplit + outquad + outstraight + outsixline
+if out > 0:
+    print(f"Надо отдать ${out} сдачи с поля")
